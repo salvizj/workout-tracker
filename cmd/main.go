@@ -8,11 +8,14 @@ import (
 )
 
 func main() {
-	cfg := config.LoadConfig()
+	cfg, err := config.LoadConfig()
+	if err != nil {
+		log.Fatal("Error loading config: ", err)
+	}
 
 	routes.RegisterRoutes()
 
-	err := http.ListenAndServe(":"+cfg.PORT, nil)
+	err = http.ListenAndServe(":"+cfg.PORT, nil)
 	if err != nil {
 		log.Fatal("Error starting server: ", err)
 	}

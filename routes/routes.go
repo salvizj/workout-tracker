@@ -7,4 +7,5 @@ import (
 
 func RegisterRoutes() {
 	http.HandleFunc("/", handlers.HomeHandler)
+	http.HandleFunc("/about", handlers.AboutHandler)
 }

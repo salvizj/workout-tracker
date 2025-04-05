@@ -1,7 +1,10 @@
 package config
 
 import (
+	"fmt"
 	"os"
+
+	"github.com/joho/godotenv"
 )
 
 type Config struct {
@@ -9,9 +12,25 @@ type Config struct {
 	PORT         string
 }
 
-func LoadConfig() Config {
-	return Config{
-		DATABASE_URL: os.Getenv("DATABASE_URL"),
-		PORT:         os.Getenv("PORT"),
+func LoadConfig() (Config, error) {
+	err := godotenv.Load(".env")
+	if err != nil {
+		return Config{}, fmt.Errorf("Error loading .env file: %v", err)
 	}
+
+	dbURL := os.Getenv("DATABASE_URL")
+	port := os.Getenv("PORT")
+
+	if dbURL == "" {
+		return Config{}, fmt.Errorf("DATABASE_URL is not set")
+	}
+
+	if port == "" {
+		return Config{}, fmt.Errorf("PORT is not set")
+	}
+
+	return Config{
+		DATABASE_URL: dbURL,
+		PORT:         port,
+	}, nil
 }

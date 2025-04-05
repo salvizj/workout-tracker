@@ -5,14 +5,14 @@ import (
 	"net/http"
 )
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
+func AboutHandler(w http.ResponseWriter, r *http.Request) {
 	tmpl := template.Must(template.ParseFiles(
 		"templates/base.html",
-		"templates/home.html",
+		"templates/about.html",
 	))
 
 	data := map[string]interface{}{
-		"Title": "Home",
+		"Title": "About",
 	}
 
 	err := tmpl.ExecuteTemplate(w, "base.html", data)
