@@ -3,20 +3,50 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>{{ .title}}</title>
+		<title>{{ .Title }}</title>
 		<script src="https://cdn.tailwindcss.com"></script>
-		<link rel="static/js/index.js" />
+		<script src="../static/toggleMobileMenu.js" defer></script>
 	</head>
-	<body>
-		<nav class="hidden md:flex space-x-4">
-			<a href="/" class="text-blue-500 hover:underline">Home</a>
-			<a href="/about" class="text-blue-500 hover:underline">About</a>
+	<body class="bg-white text-gray-900">
+		<nav
+			class="p-4 border-b flex justify-between items-center max-w-6xl mx-auto"
+		>
+			<div class="text-xl font-semibold">Workout Tracker</div>
+
+			<div class="hidden md:flex space-x-4">
+				<a href="/" class="text-blue-500 hover:underline">Home</a>
+				<a href="/about" class="text-blue-500 hover:underline">About</a>
+				<a href="/login" class="text-blue-500 hover:underline">Login</a>
+				<a href="/signup" class="text-blue-500 hover:underline"
+					>Sign Up</a
+				>
+			</div>
+
+			<button
+				class="md:hidden text-2xl focus:outline-none"
+				onclick="toggleMobileMenu()"
+			>
+				&#9776;
+			</button>
 		</nav>
 
-		<main class="p-4 max-w-6xl mx-auto">{{ template "content" . }} }</main>
+		<div id="mobile-menu" class="md:hidden hidden px-4 space-y-2">
+			<a href="/" class="block text-blue-500 hover:underline">Home</a>
+			<a href="/about" class="block text-blue-500 hover:underline"
+				>About</a
+			>
+			<a href="/login" class="block text-blue-500 hover:underline"
+				>Login</a
+			>
+			<a href="/signup" class="block text-blue-500 hover:underline"
+				>Sign Up</a
+			>
+		</div>
+
+		<main class="p-4 max-w-6xl mx-auto">{{ template "content" . }}</main>
 
 		<footer class="p-4 text-center text-sm text-gray-500">
-			&copy; 2025 MySite
+			&copy; 2025 Workout tracker
 		</footer>
 	</body>
 </html>
