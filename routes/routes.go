@@ -5,11 +5,15 @@ import (
 	"workout_tracker/handlers"
 )
 
-func RegisterRoutes() {
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
+func RegisterRoutes() *http.ServeMux {
+	router := http.NewServeMux()
 
-	http.HandleFunc("/", handlers.HomeHandler)
-	http.HandleFunc("/about", handlers.AboutHandler)
-	http.HandleFunc("/login", handlers.LoginHandler)
-	http.HandleFunc("/signup", handlers.SignupHandler)
+	fs := http.FileServer(http.Dir("static"))
+	router.Handle("/static/", http.StripPrefix("/static/", fs))
+
+	router.HandleFunc("/", handlers.HomeHandler)
+	router.HandleFunc("/login", handlers.LoginHandler)
+	router.HandleFunc("/signUp", handlers.SignupHandler)
+
+	return router
 }

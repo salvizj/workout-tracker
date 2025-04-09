@@ -1,4 +1,7 @@
-{{ define "content" }}
+{{define "imports"}}
+<script src="../static/handleAuthSubmit.js"></script>
+<script src="../static/validateAuthForm.js"></script>
+{{end}} {{ define "content" }}
 <h2 class="text-2xl font-semibold mb-4">Login</h2>
 <form action="/login" method="POST" class="space-y-4 max-w-sm">
 	<div>

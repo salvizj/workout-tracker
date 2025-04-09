@@ -5,7 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>{{ .Title }}</title>
 		<script src="https://cdn.tailwindcss.com"></script>
-		<script src="../static/toggleMobileMenu.js" defer></script>
+		<script src="../static/base/toggleMobileMenu.js" defer></script>
+		{{template "imports" .}}
 	</head>
 	<body class="bg-white text-gray-900">
 		<nav
@@ -15,9 +16,8 @@
 
 			<div class="hidden md:flex space-x-4">
 				<a href="/" class="text-blue-500 hover:underline">Home</a>
-				<a href="/about" class="text-blue-500 hover:underline">About</a>
 				<a href="/login" class="text-blue-500 hover:underline">Login</a>
-				<a href="/signup" class="text-blue-500 hover:underline"
+				<a href="/signUp" class="text-blue-500 hover:underline"
 					>Sign Up</a
 				>
 			</div>

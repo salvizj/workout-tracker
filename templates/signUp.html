@@ -1,6 +1,14 @@
-{{ define "content" }}
+{{define "imports"}}
+<script src="../static/auth/main.js" type="module"></script>
+{{end}} {{define "content"}}
 <h2 class="text-2xl font-semibold mb-4">Sign Up</h2>
-<form action="/signup" method="POST" class="space-y-4 max-w-sm">
+<form
+	action="/signUp"
+	method="POST"
+	class="space-y-4 max-w-sm"
+	id="signup-form"
+	novalidate
+>
 	<div>
 		<label class="block text-sm font-medium mb-1" for="email">Email</label>
 		<input
@@ -8,7 +16,6 @@
 			id="email"
 			name="email"
 			class="w-full border border-gray-300 p-2 rounded"
-			required
 		/>
 	</div>
 	<div>
@@ -20,7 +27,6 @@
 			id="password"
 			name="password"
 			class="w-full border border-gray-300 p-2 rounded"
-			required
 		/>
 	</div>
 	<div>
@@ -29,12 +35,12 @@
 		>
 		<input
 			type="password"
-			id="confirmPassword"
+			id="confirm-password"
 			name="confirmPassword"
 			class="w-full border border-gray-300 p-2 rounded"
-			required
 		/>
 	</div>
+	<div class="text-red-800" id="error-block"></div>
 	<button
 		type="submit"
 		class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
@@ -46,4 +52,4 @@
 		<a href="/login" class="text-blue-500 hover:underline">Login</a>
 	</p>
 </form>
-{{ end }}
+{{end}}

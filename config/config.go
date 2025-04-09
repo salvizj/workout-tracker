@@ -1,6 +1,7 @@
 package config
 
 import (
+	"errors"
 	"fmt"
 	"os"
 
@@ -8,29 +9,38 @@ import (
 )
 
 type Config struct {
-	DATABASE_URL string
-	PORT         string
+	DatabasePath string `env:"DATABASE_PATH"`
+	Port         string `env:"PORT"`
+	Domain       string `env:"DOMAIN"`
+	Env          string `env:"ENV"`
+	BindAddress  string `env:"BIND_ADDRESS"`
 }
 
 func LoadConfig() (Config, error) {
-	err := godotenv.Load(".env")
-	if err != nil {
-		return Config{}, fmt.Errorf("Error loading .env file: %v", err)
+	if err := godotenv.Load(".env"); err != nil {
+		return Config{}, fmt.Errorf("error loading .env file: %w", err)
 	}
 
-	dbURL := os.Getenv("DATABASE_URL")
-	port := os.Getenv("PORT")
-
-	if dbURL == "" {
-		return Config{}, fmt.Errorf("DATABASE_URL is not set")
+	cfg := Config{
+		DatabasePath: os.Getenv("DATABASE_PATH"),
+		Port:         os.Getenv("PORT"),
+		Domain:       os.Getenv("DOMAIN"),
+		Env:          os.Getenv("ENV"),
+		BindAddress:  os.Getenv("BIND_ADDRESS"),
 	}
 
-	if port == "" {
-		return Config{}, fmt.Errorf("PORT is not set")
+	if cfg.DatabasePath == "" {
+		return Config{}, errors.New("DATABASE_PATH is required")
+	}
+	if cfg.Port == "" {
+		cfg.Port = "8080"
+	}
+	if cfg.Domain == "" {
+		cfg.Domain = "localhost"
+	}
+	if cfg.Env == "" {
+		cfg.Env = "development"
 	}
 
-	return Config{
-		DATABASE_URL: dbURL,
-		PORT:         port,
-	}, nil
+	return cfg, nil
 }
