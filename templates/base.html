@@ -6,8 +6,8 @@
 		<title>{{ .Title }}</title>
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="../static/base/toggleMobileMenu.js" defer></script>
-		{{template "imports" .}}
-	</head>
+		<script src="../static/base/navVisibility.js" defer></script>
+		{{ block "imports" . }}{{ end }}
 	<body class="bg-white text-gray-900">
 		<nav
 			class="p-4 border-b flex justify-between items-center max-w-6xl mx-auto"
@@ -15,11 +15,25 @@
 			<div class="text-xl font-semibold">Workout Tracker</div>
 
 			<div class="hidden md:flex space-x-4">
+				<div id="guest-nav">
+					<a href="/login" class="text-blue-500 hover:underline"
+						>Login</a
+					>
+					<a href="/signUp" class="text-blue-500 hover:underline"
+						>Sign Up</a
+					>
+				</div>
+
+				<div id="logged-in-nav" style="display: none">
+					<button
+						class="text-blue-500 hover:underline"
+						onclick="logout()"
+					>
+						Logout
+					</button>
+				</div>
+
 				<a href="/" class="text-blue-500 hover:underline">Home</a>
-				<a href="/login" class="text-blue-500 hover:underline">Login</a>
-				<a href="/signUp" class="text-blue-500 hover:underline"
-					>Sign Up</a
-				>
 			</div>
 
 			<button
@@ -32,15 +46,23 @@
 
 		<div id="mobile-menu" class="md:hidden hidden px-4 space-y-2">
 			<a href="/" class="block text-blue-500 hover:underline">Home</a>
-			<a href="/about" class="block text-blue-500 hover:underline"
-				>About</a
-			>
-			<a href="/login" class="block text-blue-500 hover:underline"
-				>Login</a
-			>
-			<a href="/signup" class="block text-blue-500 hover:underline"
-				>Sign Up</a
-			>
+
+			<div id="mobile-guest-nav">
+				<a href="/login" class="block text-blue-500 hover:underline"
+					>Login</a
+				>
+				<a href="/signup" class="block text-blue-500 hover:underline"
+					>Sign Up</a
+				>
+			</div>
+			<div id="mobile-logged-in-nav" style="display: none">
+				<button
+					class="block text-blue-500 hover:underline"
+					onclick="logout()"
+				>
+					Logout
+				</button>
+			</div>
 		</div>
 
 		<main class="p-4 max-w-6xl mx-auto">{{ template "content" . }}</main>

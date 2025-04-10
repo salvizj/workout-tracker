@@ -3,6 +3,7 @@ package routes
 import (
 	"net/http"
 	"workout_tracker/handlers"
+	"workout_tracker/middleware"
 )
 
 func RegisterRoutes() *http.ServeMux {
@@ -14,6 +15,8 @@ func RegisterRoutes() *http.ServeMux {
 	router.HandleFunc("/", handlers.HomeHandler)
 	router.HandleFunc("/login", handlers.LoginHandler)
 	router.HandleFunc("/signUp", handlers.SignupHandler)
+
+	router.Handle("/dashboard", middleware.AuthMiddleware(http.HandlerFunc(handlers.DashboardHandler)))
 
 	return router
 }

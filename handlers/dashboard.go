@@ -6,15 +6,15 @@ import (
 	"net/http"
 )
 
-func HomeHandler(w http.ResponseWriter, r *http.Request) {
+func DashboardHandler(w http.ResponseWriter, r *http.Request) {
 	if r.Method == http.MethodGet {
 		tmpl := template.Must(template.ParseFiles(
 			"templates/base.html",
-			"templates/home.html",
+			"templates/dashboard.html",
 		))
 
 		data := map[string]interface{}{
-			"Title": "Home",
+			"Title": "Dashboard",
 		}
 
 		err := tmpl.ExecuteTemplate(w, "base.html", data)

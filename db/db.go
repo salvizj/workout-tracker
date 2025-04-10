@@ -5,12 +5,12 @@ import (
 	"fmt"
 	"log"
 	"os"
-	"workout_tracker/config"
+	"workout_tracker/global"
 
 	_ "github.com/mattn/go-sqlite3"
 )
 
-func InitDB(config config.Config) (*sql.DB, error) {
+func InitDB(config global.Config) (*sql.DB, error) {
 	if _, err := os.Stat(config.DatabasePath); os.IsNotExist(err) {
 		log.Printf("SQLite database file does not exist, creating %s\n", config.DatabasePath)
 	}

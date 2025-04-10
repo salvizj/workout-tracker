@@ -11,12 +11,13 @@ import (
 )
 
 func main() {
-	config, err := config.LoadConfig()
+	cfg, err := config.LoadConfig()
 	if err != nil {
 		log.Fatal("Error loading config: ", err)
 	}
+	global.CONFIG = cfg
 
-	dbConn, err := db.InitDB(config)
+	dbConn, err := db.InitDB(global.CONFIG)
 	if err != nil {
 		log.Fatal("Error initializing database: ", err)
 	}
@@ -26,16 +27,16 @@ func main() {
 	router := routes.RegisterRoutes()
 
 	server := &http.Server{
-		Addr:    config.BindAddress + ":" + config.Port,
+		Addr:    global.CONFIG.BindAddress + ":" + global.CONFIG.Port,
 		Handler: router,
 	}
 
 	startupMsg := fmt.Sprintf(
 		"Server running on: http://%s:%s\nEnvironment: %s\nDatabase: %s",
-		config.Domain,
-		config.Port,
-		config.Env,
-		config.DatabasePath,
+		global.CONFIG.Domain,
+		global.CONFIG.Port,
+		global.CONFIG.Env,
+		global.CONFIG.DatabasePath,
 	)
 	fmt.Println(startupMsg)
 
