@@ -1,40 +1,54 @@
 {{define "imports"}}
 <script src="../static/handleAuthSubmit.js" defer></script>
 <script src="../static/validateAuthForm.js" defer></script>
-{{end}}{{ define "content" }}
-<h2 class="text-2xl font-semibold mb-4">Login</h2>
-<form action="/login" method="POST" id="login-form" class="space-y-4 max-w-sm">
+{{end}} {{define "content"}}
+<h2 class="text-2xl font-bold mb-4 text-dark">Login</h2>
+
+<form
+	action="/login"
+	method="POST"
+	id="login-form"
+	class="space-y-5 max-w-sm bg-sage p-6 rounded-lg shadow-md"
+>
 	<div>
-		<label class="block text-sm font-medium mb-1" for="email">Email</label>
+		<label for="email" class="block text-sm font-medium mb-1 text-dark"
+			>Email</label
+		>
 		<input
 			type="email"
 			id="email"
 			name="email"
-			class="w-full border border-gray-300 p-2 rounded"
+			class="w-full border border-olive bg-cream text-dark p-2 rounded focus:outline-none focus:ring-2 focus:ring-olive"
 			novalidate
 		/>
 	</div>
+
 	<div>
-		<label class="block text-sm font-medium mb-1" for="password"
+		<label for="password" class="block text-sm font-medium mb-1 text-dark"
 			>Password</label
 		>
 		<input
 			type="password"
 			id="password"
 			name="password"
-			class="w-full border border-gray-300 p-2 rounded"
+			class="w-full border border-olive bg-cream text-dark p-2 rounded focus:outline-none focus:ring-2 focus:ring-olive"
 		/>
 	</div>
-	<div class="error-block text-red-800"></div>
+
+	<div class="error-block text-red-700 text-sm"></div>
+
 	<button
 		type="submit"
-		class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+		class="w-full bg-dark text-cream px-4 py-2 rounded hover:bg-olive transition"
 	>
 		Login
 	</button>
-	<p class="text-sm mt-2">
+
+	<p class="text-sm mt-3 text-dark">
 		Don't have an account?
-		<a href="/signUp" class="text-blue-500 hover:underline">Sign Up</a>
+		<a href="/signUp" class="text-olive font-medium hover:underline"
+			>Sign Up</a
+		>
 	</p>
 </form>
-{{ end }}
+{{end}}

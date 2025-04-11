@@ -7,68 +7,49 @@
 		<script src="https://cdn.tailwindcss.com"></script>
 		<script src="../static/base/toggleMobileMenu.js" defer></script>
 		<script src="../static/base/navVisibility.js" defer></script>
+		<script src="../static/base/tailwindConfig.js" defer></script>
 		{{ block "imports" . }}{{ end }}
-	<body class="bg-white text-gray-900">
-		<nav
-			class="p-4 border-b flex justify-between items-center max-w-6xl mx-auto"
-		>
-			<div class="text-xl font-semibold">Workout Tracker</div>
-
-			<div class="hidden md:flex space-x-4">
-				<div id="guest-nav">
-					<a href="/login" class="text-blue-500 hover:underline"
-						>Login</a
-					>
-					<a href="/signUp" class="text-blue-500 hover:underline"
-						>Sign Up</a
-					>
-				</div>
-
-				<div id="logged-in-nav" style="display: none">
-					<button
-						class="text-blue-500 hover:underline"
-						onclick="logout()"
-					>
-						Logout
+		<body class="bg-cream text-dark font-sans">
+			<nav class="bg-sage text-dark shadow-md">
+				<div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+					<div class="text-2xl font-bold tracking-wide">Workout Tracker</div>
+	
+					<div class="hidden md:flex space-x-6 items-center">
+						<div id="guest-nav" class="flex space-x-4">
+							<a href="/login" class="hover:text-olive font-medium transition">Login</a>
+							<a href="/signUp" class="hover:text-olive font-medium transition">Sign Up</a>
+						</div>
+	
+						<div id="logged-in-nav" style="display: none">
+							<button onclick="logout()" class="hover:text-olive font-medium transition">Logout</button>
+						</div>
+	
+						<a href="/" class="hover:text-olive font-medium transition">Home</a>
+					</div>
+	
+					<button class="md:hidden text-3xl text-dark focus:outline-none" onclick="toggleMobileMenu()">
+						&#9776;
 					</button>
 				</div>
-
-				<a href="/" class="text-blue-500 hover:underline">Home</a>
+			</nav>
+	
+			<div id="mobile-menu" class="md:hidden hidden bg-sage px-6 py-4 space-y-3 text-lg text-dark">
+				<a href="/" class="block hover:text-olive transition">Home</a>
+	
+				<div id="mobile-guest-nav">
+					<a href="/login" class="block hover:text-olive transition">Login</a>
+					<a href="/signup" class="block hover:text-olive transition">Sign Up</a>
+				</div>
+	
+				<div id="mobile-logged-in-nav" style="display: none">
+					<button onclick="logout()" class="block hover:text-olive transition">Logout</button>
+				</div>
 			</div>
-
-			<button
-				class="md:hidden text-2xl focus:outline-none"
-				onclick="toggleMobileMenu()"
-			>
-				&#9776;
-			</button>
-		</nav>
-
-		<div id="mobile-menu" class="md:hidden hidden px-4 space-y-2">
-			<a href="/" class="block text-blue-500 hover:underline">Home</a>
-
-			<div id="mobile-guest-nav">
-				<a href="/login" class="block text-blue-500 hover:underline"
-					>Login</a
-				>
-				<a href="/signup" class="block text-blue-500 hover:underline"
-					>Sign Up</a
-				>
-			</div>
-			<div id="mobile-logged-in-nav" style="display: none">
-				<button
-					class="block text-blue-500 hover:underline"
-					onclick="logout()"
-				>
-					Logout
-				</button>
-			</div>
-		</div>
-
-		<main class="p-4 max-w-6xl mx-auto">{{ template "content" . }}</main>
-
-		<footer class="p-4 text-center text-sm text-gray-500">
-			&copy; 2025 Workout tracker
-		</footer>
-	</body>
+	
+			<main class="p-4 max-w-6xl mx-auto">{{ template "content" . }}</main>
+	
+			<footer class="p-4 text-center text-sm text-olive border-t mt-6">
+				&copy; 2025 Workout Tracker
+			</footer>
+		</body>
 </html>

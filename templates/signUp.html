@@ -1,55 +1,67 @@
 {{define "imports"}}
 <script src="../static/auth/auth.js" defer></script>
-{{end}}{{define "content"}}
-<h2 class="text-2xl font-semibold mb-4">Sign Up</h2>
+{{end}} {{define "content"}}
+<h2 class="text-2xl font-bold mb-4 text-dark">Sign Up</h2>
+
 <form
 	action="/signUp"
 	method="POST"
-	class="space-y-4 max-w-sm"
+	class="space-y-5 max-w-sm bg-sage p-6 rounded-lg shadow-md"
 	id="signUp-form"
 	novalidate
 >
 	<div>
-		<label class="block text-sm font-medium mb-1" for="email">Email</label>
+		<label for="email" class="block text-sm font-medium mb-1 text-dark"
+			>Email</label
+		>
 		<input
 			type="email"
 			id="email"
 			name="email"
-			class="w-full border border-gray-300 p-2 rounded"
+			class="w-full border border-olive bg-cream text-dark p-2 rounded focus:outline-none focus:ring-2 focus:ring-olive"
 		/>
 	</div>
+
 	<div>
-		<label class="block text-sm font-medium mb-1" for="password"
+		<label for="password" class="block text-sm font-medium mb-1 text-dark"
 			>Password</label
 		>
 		<input
 			type="password"
 			id="password"
 			name="password"
-			class="w-full border border-gray-300 p-2 rounded"
+			class="w-full border border-olive bg-cream text-dark p-2 rounded focus:outline-none focus:ring-2 focus:ring-olive"
 		/>
 	</div>
+
 	<div>
-		<label class="block text-sm font-medium mb-1" for="confirmPassword"
+		<label
+			for="confirmPassword"
+			class="block text-sm font-medium mb-1 text-dark"
 			>Confirm Password</label
 		>
 		<input
 			type="password"
 			id="confirm-password"
 			name="confirmPassword"
-			class="w-full border border-gray-300 p-2 rounded"
+			class="w-full border border-olive bg-cream text-dark p-2 rounded focus:outline-none focus:ring-2 focus:ring-olive"
 		/>
 	</div>
-	<div class="error-block text-red-800"></div>
+
+	<div class="error-block text-red-700 text-sm"></div>
+
 	<button
 		type="submit"
-		class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+		class="w-full bg-dark text-cream px-4 py-2 rounded hover:bg-olive transition"
 	>
 		Sign Up
 	</button>
-	<p class="text-sm mt-2">
+
+	<p class="text-sm mt-3 text-dark">
 		Already have an account?
-		<a href="/login" class="text-blue-500 hover:underline">Login</a>
+		<a href="/login" class="text-olive font-medium hover:underline"
+			>Login</a
+		>
 	</p>
 </form>
 {{end}}
